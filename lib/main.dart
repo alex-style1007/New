@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_proyecto_final/views/iniciar_sesion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    //home: const IniciarSesion()
+    home: const IniciarSesion()
   );
   }
 }
