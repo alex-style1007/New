@@ -69,20 +69,26 @@ class _MyWidgetState extends State<IniciarSesion> {
               obscureText: true
             ),
           ),
-          const SizedBox(height: 40,),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context); //ir
-              Navigator.push( //volver
-                context, 
-                MaterialPageRoute(builder: (_) => const Home())
-              );
-            },
-            child: const Text(
-              'INGRESAR', 
-              style: TextStyle(fontSize: 25),
+          const SizedBox(height: 50,),
+          Center(
+            child: SizedBox(
+              width: 250, 
+              height: 50, 
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); //ir
+                  Navigator.push( //volver
+                    context, 
+                    MaterialPageRoute(builder: (_) => const Home())
+                  );
+                },
+                child: const Text(
+                  'INGRESAR',
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
