@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 200),
+            const SizedBox(height: 150),
             Center(
               child: SizedBox(
                 width: 250, 
