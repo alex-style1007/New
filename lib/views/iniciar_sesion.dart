@@ -79,7 +79,7 @@ class _MyWidgetState extends State<IniciarSesion> {
               );
             },
             child: const Text(
-              'Iniciar sesión', 
+              'INGRESAR', 
               style: TextStyle(fontSize: 25),
             ),
           )
