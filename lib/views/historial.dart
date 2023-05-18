@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_escapes
+
 import 'package:flutter/material.dart';
 import 'package:nuevo_proyecto_final/views/home.dart';
 
@@ -14,23 +16,21 @@ class Historial extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 200, // Establece la altura máxima de la tabla
+            height: 400, // Establece la altura máxima de la tabla
             width: 350,
             child: SingleChildScrollView(
               child: Table(// Establece el estilo de la tabla
                 border: TableBorder.all(),
-                children: const [
+                children: [
                   TableRow(
                     children: [
                       TableCell( // Celda 1, columna 1
                         child: SizedBox(
-                          height: 50,
-                          child: Center(child: Text('aqui va la foto')),
+                          child: Center(child: Image.network('https://picsum.photos/250?image=9',)),
                         ),
                       ),
-                      TableCell( // Celda 1, columna 2
+                      const TableCell( // Celda 1, columna 2
                         child: SizedBox(
-                          height: 50,
                           child: Center(child: Text('animal 1')),
                         ),
                       ),
@@ -40,13 +40,11 @@ class Historial extends StatelessWidget {
                     children: [
                       TableCell( // Celda 2, columna 1
                         child: SizedBox(
-                          height: 50,
-                          child: Center(child: Text('aqui va la foto')),
+                          child: Center(child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')),
                         ),
                       ),
-                      TableCell(// Celda 2, columna 2
+                      const TableCell(// Celda 2, columna 2
                         child: SizedBox(
-                          height: 50,
                           child: Center(child: Text('animal 2')),
                         ),
                       ),
@@ -56,13 +54,11 @@ class Historial extends StatelessWidget {
                     children: [
                       TableCell( // Celda 3, columna 1
                         child: SizedBox(
-                          height: 50,
-                          child: Center(child: Text('aqui va la foto')),
+                          child: Center(child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg')),
                         ),
                       ),
-                      TableCell( // Celda 3, columna 2
+                      const TableCell( // Celda 3, columna 2
                         child: SizedBox(
-                          height: 50,
                           child: Center(child: Text('animal 3')),
                         ),
                       ),
@@ -72,13 +68,11 @@ class Historial extends StatelessWidget {
                     children: [ 
                       TableCell(// Celda 4, columna 1
                         child: SizedBox(
-                          height: 50,
-                          child: Center(child: Text('aqui va la foto')),
+                          child: Center(child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')),
                         ),
                       ),
-                      TableCell(// Celda 4, columna 2
+                      const TableCell(// Celda 4, columna 2
                         child: SizedBox(
-                          height: 50,
                           child: Center(child: Text('animal 4')),
                         ),
                       ),
