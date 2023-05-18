@@ -6,10 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
-// void main() {
-//   runApp  (const Picker());
-// }
-
 class Picker extends StatelessWidget {
   const Picker({super.key});
 
@@ -61,11 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
         controller = VideoPlayerController.file(File(file.path));
       }
       _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
       const double volume = kIsWeb ? 0.0 : 1.0;
       await controller.setVolume(volume);
       await controller.initialize();
@@ -77,12 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Future<void> _onFileButtonPressed() async {
-  final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-  setState(() {
-    _setImageFileListFromFile(pickedFile);
-  });
-}
-
+    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _setImageFileListFromFile(pickedFile);
+    });
+  }
 
   @override
   void deactivate() {
@@ -138,8 +128,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView.builder(
           key: UniqueKey(),
           itemBuilder: (BuildContext context, int index) {
-            //Why network for web?
-            //See https://pub.dev/packages/image_picker_for_web#limitations-on-the-web-platform
             return Semantics(
               label: 'image_picker_example_picked_image',
               child: kIsWeb
@@ -201,81 +189,64 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  /* 
-  
-    ElevatedButton(
-      child: Text("Cargar imiagen"),
-      onPressed: (){
-
-      }, onTap
-    )
-  */
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title!),
       ),
-      body: Center(
-        child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-            ? FutureBuilder<void>(
-                future: retrieveLostData(),
-                builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                    case ConnectionState.waiting:
-                      return const Text(
-                        'You have not yet picked an image.',
-                        textAlign: TextAlign.center,
-                      );
-                    case ConnectionState.done:
-                      return _handlePreview();
-                    case ConnectionState.active:
-                      if (snapshot.hasError) {
-                        return Text(
-                          'Pick image/video error: ${snapshot.error}}',
-                          textAlign: TextAlign.center,
-                        );
-                      } else {
-                        return const Text(
-                          'No has cargado ninguna imagen',
-                          textAlign: TextAlign.center,
-                        );
-                      }
-                  }
-                },
-              )
-            : _handlePreview(),
+      body: Center(child: 
+        !kIsWeb && defaultTargetPlatform == TargetPlatform.android ? FutureBuilder<void>(
+          future: retrieveLostData(),
+          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+                return const Text(
+                  'You have not yet picked an image.',
+                  textAlign: TextAlign.center,
+                );
+              case ConnectionState.done:
+                return _handlePreview();
+              case ConnectionState.active:
+                if (snapshot.hasError) {
+                  return Text(
+                    'Pick image/video error: ${snapshot.error}}',
+                    textAlign: TextAlign.center,
+                  );
+                } else {
+                  return const Text(
+                    'No has cargado ninguna imagen',
+                    textAlign: TextAlign.center,
+                  );
+                }
+            }
+          },
+        ): _handlePreview(),
       ),
-      
-      
-floatingActionButton: Row(
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: [
-    Container(
-      width: 200,
-      child: ElevatedButton(
-        onPressed: _onFileButtonPressed, // Llama a la nueva función _onFileButtonPressed(),q
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3.0),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 200,
+            child: ElevatedButton(
+              onPressed: _onFileButtonPressed, // Llama a la nueva función _onFileButtonPressed(),q
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(3.0),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  SizedBox(width: 10),
+                  Text('Cargar imagen'),
+                ],
+              ),
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            SizedBox(width: 10),
-            Text('Cargar imagen'),
-          ],
-        ),
+        ],
       ),
-    ),
-  ],
-),
-
-
-
     );
   }
 
@@ -287,8 +258,6 @@ floatingActionButton: Row(
     }
     return null;
   }
-
-  
 }
 
 typedef OnPickImageCallback = void Function(
@@ -343,71 +312,3 @@ class AspectRatioVideoState extends State<AspectRatioVideo> {
     }
   }
 }
-
-
-// import 'package:flutter/material.dart';
-// import 'package:nuevo_proyecto_final/views/home.dart';
-// import 'dart:io';
-// import 'package:image_picker/image_picker.dart';
-
-// void main() {
-//   runApp(const Picker());
-// }
-
-// class Picker extends StatelessWidget {
-//   const Picker({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       title: 'Image Picker Demo',
-//       home: MyHomePage(title: 'Seleccionar Imagen'),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   final ImagePicker _picker = ImagePicker();
-//   File? _imageFile;
-
-//   Future<void> _pickImage() async {
-//     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-//     if (pickedFile != null) {
-//       setState(() {
-//         _imageFile = File(pickedFile.path);
-//       });
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text(widget.title)),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             ElevatedButton(
-//               onPressed: _pickImage,
-//               child: Text('Seleccionar Imagen'),
-//             ),
-//             if (_imageFile != null)
-//               Container(
-//                 margin: EdgeInsets.all(20),
-//                 child: Image.file(_imageFile!),
-//               ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
