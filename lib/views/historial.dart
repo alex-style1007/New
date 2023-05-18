@@ -21,17 +21,17 @@ class Historial extends StatelessWidget {
             child: SingleChildScrollView(
               child: Table(// Establece el estilo de la tabla
                 border: TableBorder.all(),
-                children: [
+                children: const [
                   TableRow(
                     children: [
                       TableCell( // Celda 1, columna 1
                         child: SizedBox(
-                          child: Center(child: Image.network('https://picsum.photos/250?image=9',)),
+                          child: Center(child: Image(image: AssetImage('lib/imagenes_historial/jirafa.png'))),
                         ),
                       ),
-                      const TableCell( // Celda 1, columna 2
+                      TableCell( // Celda 1, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('animal 1')),
+                          child: Center(child: Text('Jirafa')),
                         ),
                       ),
                     ],
@@ -40,12 +40,12 @@ class Historial extends StatelessWidget {
                     children: [
                       TableCell( // Celda 2, columna 1
                         child: SizedBox(
-                          child: Center(child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')),
+                          child: Center(child: Image(image: AssetImage('lib/imagenes_historial/leon.png'))),
                         ),
                       ),
-                      const TableCell(// Celda 2, columna 2
+                      TableCell(// Celda 2, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('animal 2')),
+                          child: Center(child: Text('León')),
                         ),
                       ),
                     ],
@@ -54,12 +54,12 @@ class Historial extends StatelessWidget {
                     children: [
                       TableCell( // Celda 3, columna 1
                         child: SizedBox(
-                          child: Center(child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg')),
+                          child: Center(child: Image(image: AssetImage('lib/imagenes_historial/perro.png'))),
                         ),
                       ),
-                      const TableCell( // Celda 3, columna 2
+                      TableCell( // Celda 3, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('animal 3')),
+                          child: Center(child: Text('Perro')),
                         ),
                       ),
                     ],
@@ -68,12 +68,12 @@ class Historial extends StatelessWidget {
                     children: [ 
                       TableCell(// Celda 4, columna 1
                         child: SizedBox(
-                          child: Center(child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')),
+                          child: Center(child: Image(image: AssetImage('lib/imagenes_historial/sapo.png'))),
                         ),
                       ),
-                      const TableCell(// Celda 4, columna 2
+                      TableCell(// Celda 4, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('animal 4')),
+                          child: Center(child: Text('Sapo')),
                         ),
                       ),
                     ],
