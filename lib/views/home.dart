@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                     Navigator.pop(context); //ir
                     Navigator.push( //volver
                       context, 
-                      MaterialPageRoute(builder: (_) => const CargarImagenes())
+                      MaterialPageRoute(builder: (_) => const Picker())
                     );
                   },
                   style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 200),
+            const SizedBox(height: 150),
             Center(
               child: SizedBox(
                 width: 250, 
