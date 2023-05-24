@@ -30,3 +30,5 @@ flutter:
   uses-material-design: true
   assets:
     - lib/imagenes_historial/
+    - lib/assets/imagenet_labels.txt
+    - lib/assets/mobilenet_v2_1.0_224_1_default_1.tflite

@@ -95,8 +95,8 @@ class _PickerState extends State<Picker> {
 
   Future<void> loadModel() async {
     await Tflite.loadModel(
-      model: 'assets/mobilenet_v2_1.0_224.tflite',
-      labels: 'assets/imagenet_labels.txt',
+      model: 'lib/assets/mobilenet_v2_1.0_224_1_default_1.tflite',
+      labels: 'lib/assets/imagenet_labels.txt',
     );
   }
 
