@@ -9,22 +9,17 @@ environment:
   sdk: '>=2.19.4 <3.0.0'
 
 dependencies:
-  file_picker: 
+  file_picker: ^5.3.1
   flutter:
     sdk: flutter
-  image_picker: ^0.8.4+4
+  image_picker: ^0.8.7+5
   tflite: ^1.1.2
-
-  cupertino_icons: ^1.0.2
-  google_sign_in: ^6.1.0
-  css_colors: ^1.1.1
-  video_player: ^2.6.1
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
 
 flutter:
   uses-material-design: true

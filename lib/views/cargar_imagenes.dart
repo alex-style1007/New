@@ -1,13 +1,12 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, avoid_print, non_constant_identifier_names
 
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tflite/tflite.dart';
 import 'package:nuevo_proyecto_final/views/home.dart';
+import 'package:http/http.dart' as http;
 
 class Picker extends StatefulWidget {
   const Picker({Key? key}) : super(key: key);
@@ -17,23 +16,16 @@ class Picker extends StatefulWidget {
 }
 
 class _PickerState extends State<Picker> {
-  final ImagePicker _picker = ImagePicker();
   File? _imageFile;
   dynamic _pickImageError;
   String _classLabel = '';
+  XFile? file;
+  Uint8List imageForSendToAPI = Uint8List(8);
 
-  Future<void> _onFileButtonPressed() async {
-    XFile? pickedFile;
-    try {
-      pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-    }
-    setState(() {
-      _imageFile = pickedFile == null ? null : File(pickedFile.path);
-    });
+  _imgFromGallery() async {
+   final temp = (await ImagePicker().getImage(source:ImageSource.gallery));
+   imageForSendToAPI = await temp!.readAsBytes();
+   setState(() {_imageFile = File(temp.path);});
   }
 
   Widget _previewImage() {
@@ -64,40 +56,21 @@ class _PickerState extends State<Picker> {
 
   classifyImage() async {
     if (_imageFile == null) return;
-    var recognitions = await Tflite.runModelOnImage(
-      path: _imageFile!.path,
-      numResults: 5,
-      threshold: 0.1,
-      imageMean: 127.5,
-      imageStd: 127.5,
-    );
-    if (recognitions != null && recognitions.isNotEmpty) {
-      setState(() {
-        final prediction = recognitions[0]['label'];
-        _classLabel = prediction;
-      });
+
+    var request = http.MultipartRequest('POST', Uri.parse('http://localhost:5000/upload'));
+    request.files.add(http.MultipartFile.fromBytes('image', imageForSendToAPI,filename: 'imageForSendToAPI'));
+    var response = await request.send();
+    var temporal_label = await response.stream.bytesToString();
+
+    if (response.statusCode == 200) {
+      print('Image uploaded successfully');
+    } else {
+      print('Image upload failed with status ${response.statusCode}');
     }
-  }
 
-  @override
-  void initState() {
-    super.initState();
-    loadModel().then((value) {
-      setState(() {});
+    setState(() {
+      _classLabel = temporal_label;
     });
-  }
-
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
-  }
-
-  Future<void> loadModel() async {
-    await Tflite.loadModel(
-      model: 'lib/assets/mobilenet_v2_1.0_224_1_default_1.tflite',
-      labels: 'lib/assets/imagenet_labels.txt',
-    );
   }
 
   @override
@@ -120,7 +93,7 @@ class _PickerState extends State<Picker> {
           const SizedBox(height: 10,),
           Center(
             child: ElevatedButton(
-              onPressed: _onFileButtonPressed,
+              onPressed: _imgFromGallery,
               style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
               child: const Text('Seleccionar imagen'),
             ),
