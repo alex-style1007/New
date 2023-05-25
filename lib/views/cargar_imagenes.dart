@@ -77,7 +77,7 @@ class _PickerState extends State<Picker> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cargar Imágenes'),
+        title: const Text('Clasificar Imágenes'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -92,45 +92,66 @@ class _PickerState extends State<Picker> {
           ),
           const SizedBox(height: 10,),
           Center(
-            child: ElevatedButton(
-              onPressed: _imgFromGallery,
-              style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
-              child: const Text('Seleccionar imagen'),
+            child: SizedBox(
+              width: 260, 
+              height: 50, 
+              child: ElevatedButton(
+                onPressed: _imgFromGallery,
+                style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
+                child: const Text(
+                  'Seleccionar imágen',
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 10,),
           Center(
-            child: ElevatedButton(
-              onPressed: classifyImage,
-              style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
-              child: const Text('Clasificar'),
+            child: SizedBox(
+              width: 260, 
+              height: 50, 
+              child: ElevatedButton(
+                onPressed: _imgFromGallery,
+                style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
+                child: const Text(
+                  'Clasificar',
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 10,),
           const Center(
-            child: Text('Clase:'),
+            child: Text('Clase:', style: TextStyle(fontSize: 20),),
           ),
           const SizedBox(height: 8),
           Center(
             child: Text(
               _classLabel,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           const SizedBox(height: 10,),
           Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); //ir
-                Navigator.push( //volver
-                  context, 
-                  MaterialPageRoute(builder: (_) => const Home())
-                );
-              },
-              child: const Text('Regresar'),
+            child: SizedBox(
+              width: 260, 
+              height: 50, 
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); //ir
+                  Navigator.push( //volver
+                    context, 
+                    MaterialPageRoute(builder: (_) => const Home())
+                  );
+                },
+                child: const Text(
+                  'REGRESAR',
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
             ),
           ),
         ],
