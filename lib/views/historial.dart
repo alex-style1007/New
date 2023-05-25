@@ -31,7 +31,7 @@ class Historial extends StatelessWidget {
                       ),
                       TableCell( // Celda 1, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('Jirafa')),
+                          child: Center(child: Text('sorrel')),
                         ),
                       ),
                     ],
@@ -45,7 +45,7 @@ class Historial extends StatelessWidget {
                       ),
                       TableCell(// Celda 2, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('León')),
+                          child: Center(child: Text('lion')),
                         ),
                       ),
                     ],
@@ -59,7 +59,7 @@ class Historial extends StatelessWidget {
                       ),
                       TableCell( // Celda 3, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('Perro')),
+                          child: Center(child: Text('golden_retriver')),
                         ),
                       ),
                     ],
@@ -73,7 +73,7 @@ class Historial extends StatelessWidget {
                       ),
                       TableCell(// Celda 4, columna 2
                         child: SizedBox(
-                          child: Center(child: Text('Sapo')),
+                          child: Center(child: Text('tailed_frog')),
                         ),
                       ),
                     ],
