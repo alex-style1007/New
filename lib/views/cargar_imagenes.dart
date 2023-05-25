@@ -59,6 +59,11 @@ class _PickerState extends State<Picker> {
 
     var request = http.MultipartRequest('POST', Uri.parse('http://localhost:5000/upload'));
     request.files.add(http.MultipartFile.fromBytes('image', imageForSendToAPI,filename: 'imageForSendToAPI'));
+
+    setState(() {
+      _classLabel = 'clasificando....';
+    });
+
     var response = await request.send();
     var temporal_label = await response.stream.bytesToString();
 
@@ -111,7 +116,7 @@ class _PickerState extends State<Picker> {
               width: 260, 
               height: 50, 
               child: ElevatedButton(
-                onPressed: _imgFromGallery,
+                onPressed: classifyImage,
                 style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 169, 173, 175)),
                 child: const Text(
                   'Clasificar',
